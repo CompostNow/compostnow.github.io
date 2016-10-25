@@ -62,7 +62,6 @@
             // Let's go!
 
             var mapContainer = $('#compost-map');
-            console.log("let's go!");
 
             // Load map
             var mapWrapper = mapContainer.find('.map-wrapper');
@@ -203,6 +202,7 @@
                 if (input.val().length == 5) {
                     filters.find('.near-me').removeClass('active');
                     input.addClass('active');
+                    input.blur();
 
                     if (!geocoder) {
                         geocoder = new google.maps.Geocoder();
@@ -241,7 +241,7 @@
                     filters.removeClass('wide');
                 }
 
-                mapWrapper.height(mapContainer.parent().innerHeight() - (filters.height() + 30));
+                mapWrapper.height(mapContainer.parent().innerHeight() - (filters.height() + 10));
                 google.maps.event.trigger(map, "resize");
             };
             onResize();
