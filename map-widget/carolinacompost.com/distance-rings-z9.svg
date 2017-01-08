@@ -10,8 +10,8 @@
     height='789.544367192'
     xml:space="preserve">
     <style type="text/css">
-        circle {stroke:#00a1ad;stroke-width:1;stroke-opacity:0.5;fill:none}
-        text {fill:#00a1ad;fill-opacity:0.5;font-family:'Myriad Pro','Myriad',sans-serif}
+        circle {stroke:#00a1ad;stroke-width:1;stroke-opacity:0.75;fill:none}
+        text {stroke:#ffffff;stroke-width:2px;paint-order:stroke;fill:#00a1ad;fill-opacity:0.75;font-family:'Myriad Pro','Myriad',sans-serif}
     </style>
 
     <circle cx="394.772183596" cy="394.772183596" r="52.6362911461" />

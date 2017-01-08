@@ -10,13 +10,13 @@
     height='1684.3613167'
     xml:space="preserve">
     <style type="text/css">
-        circle {stroke:#00a1ad;stroke-width:1;stroke-opacity:0.5;fill:none}
-        text {fill:#00a1ad;fill-opacity:0.5;font-family:'Myriad Pro','Myriad',sans-serif}
+        circle {stroke:#00a1ad;stroke-width:1;stroke-opacity:0.75;fill:none}
+        text {stroke:#ffffff;stroke-width:2px;paint-order:stroke;fill:#00a1ad;fill-opacity:0.75;font-family:'Myriad Pro','Myriad',sans-serif}
     </style>
 
     <circle cx="842.180658338" cy="842.180658338" r="210.545164584" />
     <text x="842.180658338" y="651.635493754" text-anchor="middle">5 miles</text>
-    <!--<text x="842.180658338" y="1042.725822922" text-anchor="middle">5 miles</text>-->
+    <text x="842.180658338" y="1042.725822922" text-anchor="middle">5 miles</text>
 
     <circle cx="842.180658338" cy="842.180658338" r="421.090329169" />
     <text x="842.180658338" y="441.090329169" text-anchor="middle">10 miles</text>
