@@ -107,13 +107,14 @@ html, body {
     border-bottom: 3px solid #058e35;
 }
 
-#compost-map .details .sta_certified_compost img {
+#compost-map .details .sta_certified_compost img, #compost-map .details .omri_certified_compost img {
     height: 53px;
     cursor: pointer;
 }
 
 #compost-map .details .address, #compost-map .details .phone,
-#compost-map .details .source, #compost-map .details .sta_certified_compost, 
+#compost-map .details .source, 
+#compost-map .details .sta_certified_compost, #compost-map .details .omri_certified_compost, 
 #compost-map .details .memberships {
     margin: 1em;
 }
@@ -123,7 +124,8 @@ html, body {
     color: #708090;
 }
 
-#compost-map .details .source, #compost-map .details .sta_certified_compost, 
+#compost-map .details .source, 
+#compost-map .details .sta_certified_compost, #compost-map .details .omri_certified_compost, 
 #compost-map .details .memberships, #compost-map .details .btn-website, 
 #compost-map .details .btn-email, #compost-map .details .btn-phone, 
 #compost-map .details .btn-direction {

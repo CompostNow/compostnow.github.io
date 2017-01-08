@@ -9,6 +9,9 @@
     var selectedLocation;
     var geocoder;
     var positionMarker;
+    var distanceRingsMarker;
+
+    var distanceRingsCenterPoints = {6: 49.346522949469744, 7: 98.69304589893949, 8: 197.38609179787898, 9: 394.77218359575795, 10: 526.362911461, 11: 421.090329169, 12: 842.180658338};
 
     function asyncLoadScript(alreadyLoaded, url, callback) {
         if (alreadyLoaded) {
@@ -88,6 +91,8 @@
                 }
 
                 lastZoom = zoom;
+
+                updateDistanceRingsMarker();
 
                 if (!newScale) return;
 
@@ -253,6 +258,9 @@
             detailsPane.find('.sta_certified_compost img').click(function() {
                 window.open('http://compostingcouncil.org/seal-of-testing-assurance/', '_blank');
             });
+            detailsPane.find('.omri_certified_compost img').click(function() {
+                window.open('http://www.omri.org/', '_blank');
+            });
             detailsPane.find('.btn-website').click(function() {
                 var url = selectedLocation.getVal('website');
                 window.open(url, '_blank');
@@ -307,7 +315,11 @@
     }
 
     function findNearPosition(position) {
-        // add marker to map
+        // zoom to nearby locations
+        map.setCenter(position);
+        map.setZoom(10);
+
+        // add position marker to map & distance rings
         if (!positionMarker) {
             var positionIcon = {
                 path: google.maps.SymbolPath.CIRCLE,
@@ -327,14 +339,36 @@
                 icon: positionIcon,
                 zIndex: 0,
             });
+
+            distanceRingsMarker = new google.maps.Marker({
+                position: position,
+                clickable: false,
+                map: null,
+                zIndex: 0,
+            });
+            updateDistanceRingsMarker();
         }
         else {
             positionMarker.setPosition(position);
+            distanceRingsMarker.setPosition(position);
         }
+    }
 
-        // zoom to nearby locations
-        map.setCenter(position);
-        map.setZoom(10);
+    function updateDistanceRingsMarker() {
+        if (distanceRingsMarker) {
+            var zoom = map.getZoom();
+            if (zoom < 6 || zoom > 12) {
+                distanceRingsMarker.setMap(null);
+            }
+            else {
+                var center = distanceRingsCenterPoints[zoom];
+                distanceRingsMarker.setIcon({
+                    url: 'distance-rings-z'+zoom+'.svg',
+                    anchor: new google.maps.Point(center, center),
+                });
+                distanceRingsMarker.setMap(map);
+            }
+        }
     }
 
     function filterLocationType(filter) {
@@ -406,6 +440,15 @@
         }
         else {
             $('#compost-map .details .sta_certified_compost').hide();
+        }
+
+        // OMRI certified
+        data = location.getVal('omricertifiedcompost');
+        if (data && 'yes' == data) {
+            $('#compost-map .details .omri_certified_compost').show();
+        }
+        else {
+            $('#compost-map .details .omri_certified_compost').hide();
         }
 
         // website
