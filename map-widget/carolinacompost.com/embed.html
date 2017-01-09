@@ -17,8 +17,11 @@
           <div class="address"></div>
           <div class="phone"></div>
           <div class="source"></div>
-          <div class="sta_certified_compost"><img src="STA-logo.gif" alt="STA Certified"></div>
-          <div class="omri_certified_compost"><img src="OMRI-logo.png" alt="OMRI Certified"></div>
+          <div class="compost_certifications">
+            <span>Compost certified:</span>
+            <img class="sta_certified_compost" src="STA-logo.gif" alt="STA Certified">
+            <img class="omri_certified_compost" src="OMRI-logo.png" alt="OMRI Certified">
+          </div>
           <div class="memberships"></div>
           <div class="btns">
             <div class="btn-website">
@@ -67,9 +70,13 @@
           <span>near <input type="number" class="near-zip" placeholder="Zip code" pattern="\d{5}" maxlength="5"></span>
         </div>
         <div>
-          <span>Limit to</span> 
-          <button class="filter-distributors" data-type="distributor">distributors</button> 
-          <button class="filter-composters" data-type="composter">composters</button>
+          <span>Limit to</span>
+          <span class="buttons">
+            <button 
+            class="filter-all active" data-type="all">Show All</button><button 
+            class="filter-stacertified" data-type="stacertifiedcompost">STA Certified</button><button 
+            class="filter-omricertified" data-type="omricertifiedcompost">OMRI Certified</button>
+          </span>
         </div>
       </div>
     </div>

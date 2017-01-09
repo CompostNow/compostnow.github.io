@@ -21,6 +21,7 @@ html, body {
     font-size: 20px;
     margin: 10px 0px 0px 0px;
     color: #708090;
+    overflow: auto;
 }
 #compost-map .filters.wide > div:first-child {
     max-width: 50%;
@@ -41,20 +42,23 @@ html, body {
     margin-bottom: 5px;
     padding: 2px 6px 3px 6px;
 }
-#compost-map .near-me, #compost-map .near-zip, #compost-map .filter-distributors, #compost-map .filter-composters {
+#compost-map .near-zip, #compost-map .filters button {
     font-size: 20px;
     color: #708090;
     -webkit-appearance: none;
     outline: none;
     border: 1px solid #708090;
-    border-radius: 1em;
     background: white;
 }
-#compost-map .near-me, #compost-map .near-zip {
+#compost-map .filters button.active {
+    background-color: #ccc;
+}
+#compost-map button.near-me, #compost-map .near-zip {
     color: #00a1ad;
     border-color: #00a1ad;
+    border-radius: 1em;
 }
-#compost-map .near-me.active, #compost-map .near-zip.active {
+#compost-map button.near-me.active, #compost-map .near-zip.active {
     color: white;
     background-color: #02bac8;
 }
@@ -62,21 +66,16 @@ html, body {
     max-width: 90px;
     text-align: center;
 }
-#compost-map .filter-distributors {
-    color: #e56700;
-    border-color: #e56700;
+#compost-map .filters .buttons button:first-of-type {
+    border-top-left-radius: 1em;
+    border-bottom-left-radius: 1em;
 }
-#compost-map .filter-distributors.active {
-    color: white;
-    background-color: #ff7300;
+#compost-map .filters .buttons button:not(:last-of-type) {
+    border-right: 0px;
 }
-#compost-map .filter-composters {
-    color: #058e35;
-    border-color: #058e35;
-}
-#compost-map .filter-composters.active {
-    color: white;
-    background-color: #04a73d;
+#compost-map .filters .buttons button:last-of-type {
+    border-top-right-radius: 1em;
+    border-bottom-right-radius: 1em;
 }
 
 #compost-map .details {
@@ -107,24 +106,24 @@ html, body {
     border-bottom: 3px solid #058e35;
 }
 
-#compost-map .details .sta_certified_compost img, #compost-map .details .omri_certified_compost img {
+#compost-map .details .sta_certified_compost, #compost-map .details .omri_certified_compost {
     height: 53px;
     cursor: pointer;
 }
 
 #compost-map .details .address, #compost-map .details .phone,
 #compost-map .details .source, 
-#compost-map .details .sta_certified_compost, #compost-map .details .omri_certified_compost, 
+#compost-map .details .compost_certifications, 
 #compost-map .details .memberships {
     margin: 1em;
 }
 
-#compost-map .details .source > span, #compost-map .details .memberships > span {
+#compost-map .details .source > span, #compost-map .details .compost_certifications > span, #compost-map .details .memberships > span {
     display: block;
     color: #708090;
 }
 
-#compost-map .details .source, 
+#compost-map .details .source, #compost-map .details .compost_certifications
 #compost-map .details .sta_certified_compost, #compost-map .details .omri_certified_compost, 
 #compost-map .details .memberships, #compost-map .details .btn-website, 
 #compost-map .details .btn-email, #compost-map .details .btn-phone, 

@@ -224,28 +224,59 @@
             }).restrict(/\d/g);
 
             // Handle type filtering
-            filters.find('div:last-child button').click(function() {
+            filters.find('.buttons button').click(function() {
                 var el = $(this);
-                if (el.hasClass('active')) {
-                    el.removeClass('active');
+                var type = el.data().type;
+
+                if ('all' == type) {
+                    el.addClass('active');
+                    el.siblings().removeClass('active');
                     filterLocationType();
                 }
                 else {
-                    el.addClass('active');
-                    el.siblings().removeClass('active');
-                    filterLocationType(el.data().type);
+                    //handle additive filters
+                    if (el.hasClass('active')) {
+                        if (el.siblings(':not(.filter-all).active').length == 0) {
+                            // remove only filter, same as remiving all filters
+                            el.siblings('.filter-all').click();
+                        }
+                        else {
+                            // remove just this filter
+                            el.removeClass('active');
+
+                            var filters = [];
+                            var activeSibilings = el.siblings(':not(.filter-all).active');
+                            for (var i=0; i<activeSibilings.length; i++) {
+                                filters.push($(activeSibilings[i]).data().type)
+                            }
+                            filterLocationType(filters);
+                        }
+                    }
+                    else {
+                        // add filter
+                        el.siblings('.filter-all').removeClass('active');
+                        el.addClass('active');
+
+                        var filters = [type];
+                        var activeSibilings = el.siblings(':not(.filter-all).active');
+                        for (var i=0; i<activeSibilings.length; i++) {
+                            filters.push($(activeSibilings[i]).data().type)
+                        }
+                        filterLocationType(filters);
+                    }
                 }
             });
 
             // Maximize map
             var onResize = function () {
-                if (filters.width() >= 700) {
+                if (filters.width() >= 800) {
                     filters.addClass('wide');
                 }
                 else {
                     filters.removeClass('wide');
                 }
 
+                console.log(filters.height());
                 mapWrapper.height(mapContainer.parent().innerHeight() - (filters.height() + 10));
                 google.maps.event.trigger(map, "resize");
             };
@@ -255,10 +286,10 @@
             // Add details pane
             var detailsPane = $('#compost-map .details');
 
-            detailsPane.find('.sta_certified_compost img').click(function() {
+            detailsPane.find('.sta_certified_compost').click(function() {
                 window.open('http://compostingcouncil.org/seal-of-testing-assurance/', '_blank');
             });
-            detailsPane.find('.omri_certified_compost img').click(function() {
+            detailsPane.find('.omri_certified_compost').click(function() {
                 window.open('http://www.omri.org/', '_blank');
             });
             detailsPane.find('.btn-website').click(function() {
@@ -371,13 +402,27 @@
         }
     }
 
-    function filterLocationType(filter) {
+    function filterLocationType(filters) {
         var bounds = new google.maps.LatLngBounds();
+        var show;
         for (var i = 0; i < locations.length; i++) {
             var location = locations[i];
             var type = location.getVal('type');
 
-            if (!filter || filter == type) {
+            if (!filters) {
+                show = true;
+            }
+            else {
+                show = false;
+                for (var j = 0; j < filters.length; j++) {
+                    if (location.getVal(filters[j]) == 'yes') {
+                        show = true;
+                        break;
+                    }
+                }
+            }
+
+            if (show) {
                 location.marker.setMap(map);
                 bounds.extend(location.marker.position);
             }
@@ -433,22 +478,28 @@
         address += '<br>'+location.getVal('city') +', '+ location.getVal('state') + ' ' + location.getVal('zip');
         $('#compost-map .details .address').html(address);
 
-        // STA certified
-        data = location.getVal('stacertifiedcompost');
-        if (data && 'yes' == data) {
-            $('#compost-map .details .sta_certified_compost').show();
-        }
-        else {
-            $('#compost-map .details .sta_certified_compost').hide();
-        }
+        // compost certifications
+        var staCertified = 'yes' == location.getVal('stacertifiedcompost');
+        var omriCertified = 'yes' == location.getVal('omricertifiedcompost');
+        if (staCertified || omriCertified) {
+            $('#compost-map .details .compost_certifications').show();
 
-        // OMRI certified
-        data = location.getVal('omricertifiedcompost');
-        if (data && 'yes' == data) {
-            $('#compost-map .details .omri_certified_compost').show();
+            if (staCertified) {
+                $('#compost-map .details .sta_certified_compost').show();
+            }
+            else {
+                $('#compost-map .details .sta_certified_compost').hide();
+            }
+
+            if (omriCertified) {
+                $('#compost-map .details .omri_certified_compost').show();
+            }
+            else {
+                $('#compost-map .details .omri_certified_compost').hide();
+            }
         }
         else {
-            $('#compost-map .details .omri_certified_compost').hide();
+            $('#compost-map .details .compost_certfications').hide();
         }
 
         // website
@@ -493,7 +544,7 @@
         // membership
         data = location.getVal('memberships');
         if (data && '' != data) {
-            data = '<span>Member of:</span>' + data;
+            data = '<span>Proud member of:</span>' + data;
             $('#compost-map .details .memberships').html(data);
             $('#compost-map .details .memberships').show();
         }
