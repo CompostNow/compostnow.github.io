@@ -109,18 +109,18 @@
             });
 
             // Markers
-            var distributorIcon = {
+            var memberIcon = {
                 path: 'M28.034,0C12.552,0,0,12.552,0,28.034S28.034,100,28.034,100s28.034-56.483,28.034-71.966S43.517,0,28.034,0z',
                 anchor: new google.maps.Point(28.034, 100),
-                fillColor: '#ff7300',
+                fillColor: '#04a73d',
                 fillOpacity: 1,
-                strokeColor: '#e56700',
+                strokeColor: '#058e35',
                 strokeWeight: 2,
                 scale: 0.4,
             };
-            var composterIcon = JSON.parse(JSON.stringify(distributorIcon));
-            composterIcon.fillColor = '#04a73d';
-            composterIcon.strokeColor = '#058e35';
+            var nonMemberIcon = JSON.parse(JSON.stringify(memberIcon));
+            nonMemberIcon.fillColor = '#ff7300';
+            nonMemberIcon.strokeColor = '#e56700';
 
             // Load data feed
             $.get(feedUrl, function(data) {
@@ -140,7 +140,7 @@
                         position: point,
                         map: map,
                         title: location.getVal('name'),
-                        icon: (location.getVal('type') == 'distributor' ? distributorIcon : composterIcon),
+                        icon: (location.getVal('ncccmember') == 'yes' ? memberIcon : nonMemberIcon),
                     });
 
                     location.marker = marker;
@@ -268,6 +268,7 @@
             });
 
             // Maximize map
+            var legend = $('#compost-map .legend');
             var onResize = function () {
                 if (filters.width() >= 800) {
                     filters.addClass('wide');
@@ -277,7 +278,7 @@
                 }
 
                 console.log(filters.height());
-                mapWrapper.height(mapContainer.parent().innerHeight() - (filters.height() + 10));
+                mapWrapper.height(mapContainer.parent().innerHeight() - (filters.height() + legend.height() + 15));
                 google.maps.event.trigger(map, "resize");
             };
             onResize();
@@ -291,6 +292,9 @@
             });
             detailsPane.find('.omri_certified_compost').click(function() {
                 window.open('http://www.omri.org/', '_blank');
+            });
+            detailsPane.find('.nccc_member img').click(function() {
+                window.open('http://carolinacompost.com/', '_blank');
             });
             detailsPane.find('.btn-website').click(function() {
                 var url = selectedLocation.getVal('website');
@@ -467,7 +471,7 @@
         var data;
 
         // name & type
-        $('#compost-map .details .name').text(location.getVal('name')).removeClass().addClass('name ' + location.getVal('type'));
+        $('#compost-map .details .name').text(location.getVal('name')).removeClass().addClass('name ' + (location.getVal('ncccmember') == 'yes' ? 'member' : 'nonmember'));
 
         // address
         var address = location.getVal('addressline1');
@@ -542,14 +546,11 @@
         }
 
         // membership
-        data = location.getVal('memberships');
-        if (data && '' != data) {
-            data = '<span>Proud member of:</span>' + data;
-            $('#compost-map .details .memberships').html(data);
-            $('#compost-map .details .memberships').show();
+        if ('yes' == location.getVal('ncccmember')) {
+            $('#compost-map .details .nccc_member').show();
         }
         else {
-            $('#compost-map .details .memberships').hide();
+            $('#compost-map .details .nccc_member').hide();
         }
 
         if (!$("#compost-map .details").is(":visible")) {

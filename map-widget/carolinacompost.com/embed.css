@@ -97,35 +97,43 @@ html, body {
     padding: 1em;
     margin-bottom: 1em;
 }
-#compost-map .details .name.distributor {
+#compost-map .details .name.nonmember {
     background-color: #ff7300;
     border-bottom: 3px solid #e56700;
 }
-#compost-map .details .name.composter {
+#compost-map .details .name.member {
     background-color: #04a73d;
     border-bottom: 3px solid #058e35;
 }
 
-#compost-map .details .sta_certified_compost, #compost-map .details .omri_certified_compost {
-    height: 53px;
+#compost-map .details .sta_certified_compost, #compost-map .details .omri_certified_compost, #compost-map .details .nccc_member img  {
+    height: 30px;
     cursor: pointer;
+}
+@media screen and (min-height: 550px) {
+    #compost-map .details .sta_certified_compost, #compost-map .details .omri_certified_compost {
+        height: 53px;
+    }
+    #compost-map .details .nccc_member img  {
+        height: 75px;
+    }
 }
 
 #compost-map .details .address, #compost-map .details .phone,
 #compost-map .details .source, 
 #compost-map .details .compost_certifications, 
-#compost-map .details .memberships {
+#compost-map .details .nccc_member {
     margin: 1em;
 }
 
-#compost-map .details .source > span, #compost-map .details .compost_certifications > span, #compost-map .details .memberships > span {
+#compost-map .details .source > span, #compost-map .details .compost_certifications > span, #compost-map .details .nccc_member > span {
     display: block;
     color: #708090;
 }
 
 #compost-map .details .source, #compost-map .details .compost_certifications
 #compost-map .details .sta_certified_compost, #compost-map .details .omri_certified_compost, 
-#compost-map .details .memberships, #compost-map .details .btn-website, 
+#compost-map .details .nccc_member, #compost-map .details .btn-website, 
 #compost-map .details .btn-email, #compost-map .details .btn-phone, 
 #compost-map .details .btn-direction {
     display: none;
@@ -136,8 +144,8 @@ html, body {
 }
 #compost-map .details .btns > div {
     display: inline-block;
-    width: 3em;
-    height: 3em;
+    width: 2.5em;
+    height: 2.5em;
     fill: white;
     background-color: #00c3ff;
     margin: 0.5em;
@@ -168,6 +176,19 @@ html, body {
     vertical-align: top;
     cursor: pointer;
     pointer-events: auto;
+}
+
+#compost-map .legend {
+    text-align: center;
+    color: #708090;
+}
+#compost-map .legend img, #compost-map .legend svg {
+    max-height: 20px;
+    position: relative;
+    top: 4px;
+}
+#compost-map .legend span:first-child {
+    margin-right: 20px;
 }
 
 #compost-map ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
