@@ -277,7 +277,6 @@
                     filters.removeClass('wide');
                 }
 
-                console.log(filters.height());
                 mapWrapper.height(mapContainer.parent().innerHeight() - (filters.height() + legend.height() + 15));
                 google.maps.event.trigger(map, "resize");
             };
