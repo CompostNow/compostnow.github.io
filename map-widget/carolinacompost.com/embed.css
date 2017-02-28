@@ -103,6 +103,7 @@ html, body {
     color: white;
     padding: 1em;
     margin-bottom: 1em;
+    font-size: 1.25em;
 }
 #compost-map .details .name.nonmember {
     background-color: #ff7300;
@@ -113,9 +114,23 @@ html, body {
     border-bottom: 3px solid #058e35;
 }
 
-#compost-map .details .sta_certified_compost, #compost-map .details .omri_certified_compost, #compost-map .details .nccc_member img  {
+#compost-map .details .sta_certified_compost, #compost-map .details .omri_certified_compost  {
     height: 30px;
     cursor: pointer;
+}
+#compost-map .details .nccc_member span {
+    cursor: pointer;
+}
+#compost-map .details .nccc_member .nccc_small img {
+    height: 20px;
+    position: relative;
+    top: 4px;
+}
+#compost-map .details .nccc_member .nccc_large img {
+    height: 75px;
+}
+#compost-map .details .nccc_member .nccc_large {
+    display: none;
 }
 @media screen and (min-height: 550px) {
     #compost-map .details .sta_certified_compost, #compost-map .details .omri_certified_compost {
@@ -125,17 +140,39 @@ html, body {
         height: 75px;
     }
 }
+@media screen and (min-height: 650px) {
+    #compost-map .details .nccc_member .nccc_large {
+        display: block;
+    }
+    #compost-map .details .nccc_member .nccc_small {
+        display: none;
+    }
+}
 
-#compost-map .details .address, #compost-map .details .phone,
+#compost-map .details .address, #compost-map .details .phone, #compost-map .details .website,
 #compost-map .details .source, 
 #compost-map .details .compost_certifications, 
 #compost-map .details .nccc_member {
     margin: 1em;
 }
 
+#compost-map .details .phone, #compost-map .details .website {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+#compost-map .details .website a {
+    color: #00c3ff;
+    text-decoration: none;
+}
+
 #compost-map .details .source > span, #compost-map .details .compost_certifications > span, #compost-map .details .nccc_member > span {
     display: block;
     color: #708090;
+}
+
+#compost-map .details .compost_certifications > img:not(:first-of-type) {
+    margin-left: 30px;
 }
 
 #compost-map .details .source, #compost-map .details .compost_certifications
@@ -207,4 +244,14 @@ html, body {
 }
 #compost-map :-ms-input-placeholder { /* Internet Explorer 10-11 */
    color: #00a1ad;
+}
+
+/* Hide zip code field spinners */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
 }

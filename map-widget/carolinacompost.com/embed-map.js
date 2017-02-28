@@ -292,7 +292,7 @@
             detailsPane.find('.omri_certified_compost').click(function() {
                 window.open('http://www.omri.org/', '_blank');
             });
-            detailsPane.find('.nccc_member img').click(function() {
+            detailsPane.find('.nccc_member span').click(function() {
                 window.open('http://carolinacompost.com/', '_blank');
             });
             detailsPane.find('.btn-website').click(function() {
@@ -508,19 +508,24 @@
         // website
         data = location.getVal('website');
         if (data) {
+            var el = $('<a href="'+data+'" target="_blank"></a>');
+            el.append(el[0].hostname.replace('www.', ''));
+            $('#compost-map .details .website').html(el).show();
             $('#compost-map .details .btn-website').show();
         }
         else {
+            $('#compost-map .details .website').hide();
             $('#compost-map .details .btn-website').hide();
         }
 
         // phone
         data = location.getVal('phone');
         if (data) {
-            $('#compost-map .details .phone').text(data);
+            $('#compost-map .details .phone').text(data).show();
             $('#compost-map .details .btn-phone').show();
         }
         else {
+            $('#compost-map .details .phone').hide();
             $('#compost-map .details .btn-phone').hide();
         }
 
