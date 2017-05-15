@@ -223,6 +223,11 @@
                 }
             }).restrict(/\d/g);
 
+            // Shorten zip code filter placeholder on small screens
+            if (window.innerWidth <= 320) {
+                filters.find('.near-zip').attr('placeholder', 'Zip');
+            }
+
             // Handle type filtering
             filters.find('.buttons button').click(function() {
                 var el = $(this);
@@ -306,6 +311,10 @@
             detailsPane.find('.btn-email').click(function() {
                 var email = selectedLocation.getVal('email');
                 window.location.href = 'mailto:'+email;
+            });
+            detailsPane.find('.btn-facebook').click(function() {
+                var url = selectedLocation.getVal('facebook');
+                window.open(url, '_blank');
             });
             detailsPane.find('.btn-directions').click(function() {
                 var position = '';
@@ -522,6 +531,7 @@
         data = location.getVal('phone');
         if (data) {
             $('#compost-map .details .phone').text(data).show();
+            //$('#compost-map .details .phone').html('<a href="tel:'+data+'">'+data+'</a>').show();
             $('#compost-map .details .btn-phone').show();
         }
         else {
@@ -536,6 +546,15 @@
         }
         else {
             $('#compost-map .details .btn-email').hide();
+        }
+
+        // facebook
+        data = location.getVal('facebook');
+        if (data) {
+            $('#compost-map .details .btn-facebook').show();
+        }
+        else {
+            $('#compost-map .details .btn-facebook').hide();
         }
 
         // source
@@ -559,6 +578,7 @@
 
         if (!$("#compost-map .details").is(":visible")) {
             $("#compost-map .details").animate({width:'toggle'},350);
+            $('#compost-map .details .scroll')[0].scrollTop = 0;
         }
     }
 

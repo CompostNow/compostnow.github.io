@@ -85,6 +85,18 @@ html, body {
     padding-right: 4px;
 }
 
+@media screen and (max-width: 320px) {
+    #compost-map .filters div:first-child {
+        word-spacing: -1px;
+    }
+    #compost-map .filters .buttons .filter-all span {
+        display: none;
+    }
+    #compost-map .near-zip {
+        max-width: 65px;
+    }
+}
+
 #compost-map .details {
     display: none;
     position: absolute;
@@ -97,12 +109,15 @@ html, body {
     border-right: 1px solid #ccc;
     box-sizing: border-box;
 }
+#compost-map .details .scroll {
+    overflow-y: auto;
+    height: 100%;
+}
 
 #compost-map .details .name {
     font-weight: bold;
     color: white;
     padding: 1em;
-    margin-bottom: 1em;
     font-size: 1.25em;
 }
 #compost-map .details .name.nonmember {
@@ -182,14 +197,17 @@ html, body {
 #compost-map .details .btn-direction {
     display: none;
 }
+#compost-map .details .btn-facebook svg {
+    height: 2em;
+}
 
 #compost-map .details .btns {
     text-align: center;
 }
 #compost-map .details .btns > div {
     display: inline-block;
-    width: 2.5em;
-    height: 2.5em;
+    width: 2em;
+    height: 2em;
     fill: white;
     background-color: #00c3ff;
     margin: 0.5em;
@@ -233,6 +251,11 @@ html, body {
 }
 #compost-map .legend span:first-child {
     margin-right: 20px;
+}
+@media screen and (max-width: 430px) {
+    #compost-map .legend span {
+        display: block;
+    }
 }
 
 #compost-map ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
