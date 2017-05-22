@@ -292,10 +292,15 @@
             var detailsPane = $('#compost-map .details');
 
             detailsPane.find('.sta_certified_compost').click(function() {
-                window.open('http://compostingcouncil.org/seal-of-testing-assurance/', '_blank');
+                //window.open('http://compostingcouncil.org/seal-of-testing-assurance/', '_blank');
+                $('#compost-map .details .sta-popup').fadeIn();
+            });
+            detailsPane.find('span.close').click(function() {
+                $(this).parent('.certification-popup').hide();
             });
             detailsPane.find('.omri_certified_compost').click(function() {
-                window.open('http://www.omri.org/', '_blank');
+                //window.open('http://www.omri.org/', '_blank');
+                $('#compost-map .details .omri-popup').fadeIn();
             });
             detailsPane.find('.nccc_member span').click(function() {
                 window.open('http://carolinacompost.com/', '_blank');
@@ -326,7 +331,7 @@
                 window.open('https://www.google.com/maps/dir/'+position+'/'+address, '_blank');
             });
 
-            $('#compost-map .details .close').click(clearSelectedLocation);
+            $('#compost-map .details div.close').click(clearSelectedLocation);
 
             // Close details pane by clicking on map
             google.maps.event.addListener(map, 'click', clearSelectedLocation);
