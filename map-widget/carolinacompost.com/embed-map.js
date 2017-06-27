@@ -80,7 +80,7 @@
                 }
 
                 var newScale;
-                if (lastZoom > 7 && zoom <= 7) {
+                if ((lastZoom > 7 || ! lastZoom) && zoom <= 7) {
                     newScale = 0.1;
                 }
                 else if (lastZoom < 10 && zoom >= 10) {
@@ -109,7 +109,7 @@
             });
 
             // Markers
-            var memberIcon = {
+            var icon = {
                 path: 'M28.034,0C12.552,0,0,12.552,0,28.034S28.034,100,28.034,100s28.034-56.483,28.034-71.966S43.517,0,28.034,0z',
                 anchor: new google.maps.Point(28.034, 100),
                 fillColor: '#04a73d',
@@ -118,9 +118,6 @@
                 strokeWeight: 2,
                 scale: 0.4,
             };
-            var nonMemberIcon = JSON.parse(JSON.stringify(memberIcon));
-            nonMemberIcon.fillColor = '#ff7300';
-            nonMemberIcon.strokeColor = '#e56700';
 
             // Load data feed
             $.get(feedUrl, function(data) {
@@ -140,7 +137,7 @@
                         position: point,
                         map: map,
                         title: location.getVal('name'),
-                        icon: (location.getVal('ncccmember') == 'yes' ? memberIcon : nonMemberIcon),
+                        icon: icon,
                     });
 
                     location.marker = marker;
@@ -273,7 +270,6 @@
             });
 
             // Maximize map
-            var legend = $('#compost-map .legend');
             var onResize = function () {
                 if (filters.width() >= 800) {
                     filters.addClass('wide');
@@ -282,7 +278,7 @@
                     filters.removeClass('wide');
                 }
 
-                mapWrapper.height(mapContainer.parent().innerHeight() - (filters.height() + legend.height() + 15));
+                mapWrapper.height(mapContainer.parent().innerHeight() - (filters.height() + 15));
                 google.maps.event.trigger(map, "resize");
             };
             onResize();
@@ -484,7 +480,7 @@
         var data;
 
         // name & type
-        $('#compost-map .details .name').text(location.getVal('name')).removeClass().addClass('name ' + (location.getVal('ncccmember') == 'yes' ? 'member' : 'nonmember'));
+        $('#compost-map .details .name').text(location.getVal('name')).removeClass().addClass('name ');
 
         // address
         var address = location.getVal('addressline1');

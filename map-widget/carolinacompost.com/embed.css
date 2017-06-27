@@ -120,11 +120,7 @@ html, body {
     padding: 1em;
     font-size: 1.25em;
 }
-#compost-map .details .name.nonmember {
-    background-color: #ff7300;
-    border-bottom: 3px solid #e56700;
-}
-#compost-map .details .name.member {
+#compost-map .details .name {
     background-color: #04a73d;
     border-bottom: 3px solid #058e35;
 }
@@ -258,24 +254,6 @@ html, body {
     vertical-align: top;
     cursor: pointer;
     pointer-events: auto;
-}
-
-#compost-map .legend {
-    text-align: center;
-    color: #708090;
-}
-#compost-map .legend img, #compost-map .legend svg {
-    max-height: 20px;
-    position: relative;
-    top: 4px;
-}
-#compost-map .legend span:first-child {
-    margin-right: 20px;
-}
-@media screen and (max-width: 430px) {
-    #compost-map .legend span {
-        display: block;
-    }
 }
 
 #compost-map ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
