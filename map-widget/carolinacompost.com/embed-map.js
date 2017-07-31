@@ -512,7 +512,7 @@
             }
         }
         else {
-            $('#compost-map .details .compost_certfications').hide();
+            $('#compost-map .details .compost_certifications').hide();
         }
 
         // website

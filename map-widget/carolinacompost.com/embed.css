@@ -202,8 +202,8 @@ html, body {
     color: #708090;
 }
 
-#compost-map .details .compost_certifications > img:not(:first-of-type) {
-    margin-left: 30px;
+#compost-map .details .compost_certifications .sta_certified_compost {
+    margin-right: 30px;
 }
 
 #compost-map .details .source, #compost-map .details .compost_certifications
