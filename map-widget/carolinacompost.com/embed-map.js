@@ -292,7 +292,7 @@
                 $('#compost-map .details .sta-popup').fadeIn();
             });
             detailsPane.find('span.close').click(function() {
-                $(this).parent('.certification-popup').hide();
+                $(this).parent('.popup').hide();
             });
             detailsPane.find('.omri_certified_compost').click(function() {
                 //window.open('http://www.omri.org/', '_blank');
@@ -332,9 +332,12 @@
             // Close details pane by clicking on map
             google.maps.event.addListener(map, 'click', clearSelectedLocation);
 
-            // Add powered by
-            mapWrapper.find('.powered-by img').click(function() {
-                window.open('https://compostnow.org', '_blank');
+            // Add info button
+            mapWrapper.find('.info svg').click(function() {
+                $('#compost-map .info .info-popup').fadeIn();
+            });
+            mapWrapper.find('.info span.close').click(function() {
+                $(this).parent('.popup').hide();
             });
 
         });

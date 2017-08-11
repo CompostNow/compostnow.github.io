@@ -129,7 +129,7 @@ html, body {
     height: 30px;
     cursor: pointer;
 }
-#compost-map .details .certification-popup {
+#compost-map .popup {
     display: none;
     position: fixed;
     background: white;
@@ -138,15 +138,17 @@ html, body {
     box-sizing: border-box;
     border: 1px solid gray;
     border-radius: 0.5em;
-    z-index: 1;
-    top: 30%;
+    z-index: 11;
+    top: 10%;
+    left: 1em;
 }
-#compost-map .details .certification-popup span {
+#compost-map .popup span {
     display: block;
     width: 50%
 }
-#compost-map .details .certification-popup span.close {
+#compost-map .popup span.close {
     text-align: right;
+    padding-right: 1em;
     color: #708090;
 }
 #compost-map .details .nccc_member span {
@@ -169,6 +171,9 @@ html, body {
     }
     #compost-map .details .nccc_member img  {
         height: 75px;
+    }
+    #compost-map .popup {
+        top: 30%;
     }
 }
 @media screen and (min-height: 650px) {
@@ -232,7 +237,7 @@ html, body {
     text-align: center;
 }
 
-#compost-map .details .close {
+#compost-map .details .close, #compost-map .info .close {
     width: 2em;
     position: absolute;
     bottom: 10px;
@@ -241,19 +246,15 @@ html, body {
     fill: #708090;
 }
 
-#compost-map .powered-by {
+#compost-map .info {
     position: absolute;
+    width: 25px;
+    height: 25px;
     top: 10px;
     right: 10px;
-    color: #708090;
-    font-size: 0.75em;
-    pointer-events: none;
 }
-#compost-map .powered-by img {
-    height: 40px;
-    vertical-align: top;
+#compost-map .info svg {
     cursor: pointer;
-    pointer-events: auto;
 }
 
 #compost-map ::-webkit-input-placeholder { /* WebKit, Blink, Edge */

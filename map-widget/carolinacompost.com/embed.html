@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <title>Map widget</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" href="embed.css?r=1">
-    <script async src="embed-map.js?r=1"></script>
+    <link rel="stylesheet" href="embed.css?r=2">
+    <script async src="embed-map.js?r=2"></script>
   </head>
 
   <body>
@@ -21,13 +21,13 @@
             <div class="source"></div>
             <div class="compost_certifications">
               <span>Compost certification:</span>
-              <div class="sta-popup certification-popup">
+              <div class="sta-popup popup">
                 The US Composting Council's Seal of Testing Assurance Program ('STA') is a compost testing, labeling and information disclosure program designed to give you the information you need to get the maximum benefit from the use of compost. 
                 <span><a href="http://compostingcouncil.org/seal-of-testing-assurance/" target="_blank">Learn more</a></span>
                 <span class="close">Close</span>
               </div>
               <img class="sta_certified_compost" src="STA-logo.gif" alt="STA Certified">
-              <div class="omri-popup certification-popup">
+              <div class="omri-popup popup">
                 OMRI is a national nonprofit organization that offers an independent review of products and determines which products are allowed to be labeled for use in organic environments. 
                 <span><a href="http://www.omri.org/" target="_blank">Learn more</a></span>
                 <span class="close">Close</span>
@@ -84,7 +84,19 @@
             </svg>
           </div>
         </div>
-        <div class="powered-by">Powered by <img src="https://compostnow.org/static/images/compostnow_logo.svg" alt="CompostNow"></div>
+        <div class="info">
+          <div class="info-popup popup">
+              This map shows the locations in North Carolina distributing compost manufactured by NCDEQ permitted composting facilities. The map is owned by the North Carolina Composting Council and it was developed by CompostNow. Special thanks to McGill Premium Compost and WRE-Earth Farms Organics for financially assisting in the development of the plan. If you have any questions, please email <a href="mailto:info@carolinacompost.com">info@carolinacompost.com</a>.
+              <span class="close">Close</span>
+            </div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="#708090" viewBox="0 0 100 100" x="0px" y="0px">
+            <g>
+              <circle cx="50" cy="50" r="46" style="fill:#ffffff;stroke:#708090;stroke-width:7" />
+              <circle cx="50" cy="30.74" r="6.67" />
+              <rect x="43.33" y="43.57" width="13.34" height="33" />
+            </g>
+          </svg>
+        </div>
       </div>
       <div class="filters">
         <div>
