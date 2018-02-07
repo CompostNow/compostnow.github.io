@@ -1,0 +1,20 @@
+
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox='0 0 98.6930458989 98.6930458989'
+    version='1.1'
+    encoding='utf-8'
+    width='98.6930458989'
+    height='98.6930458989'
+    xml:space="preserve">
+    <style type="text/css">
+        circle {stroke:#00a1ad;stroke-width:1;stroke-opacity:0.75;fill:none}
+        text {stroke:#ffffff;stroke-width:2px;paint-order:stroke;fill:#00a1ad;fill-opacity:0.75;font-family:'Myriad Pro','Myriad',sans-serif}
+    </style>
+
+    <circle cx="49.3465229495" cy="49.3465229495" r="49.3465229495" />
+    <text x="49.3465229495" y="20.0" text-anchor="middle">75 miles</text>
+    <!--<text x="49.3465229495" y="88.6930458989" text-anchor="middle">75 miles</text>-->
+</svg>
