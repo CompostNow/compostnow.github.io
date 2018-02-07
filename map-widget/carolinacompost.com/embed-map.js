@@ -351,6 +351,7 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             mapTypeControl: false,
             streetViewControl: false,
+            fullscreenControl: false,
             zoomControlOptions: { style: google.maps.ZoomControlStyle.SMALL },
             styles: [{
                         "stylers": [
