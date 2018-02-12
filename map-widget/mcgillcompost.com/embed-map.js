@@ -112,9 +112,9 @@
             var icon = {
                 path: 'M28.034,0C12.552,0,0,12.552,0,28.034S28.034,100,28.034,100s28.034-56.483,28.034-71.966S43.517,0,28.034,0z',
                 anchor: new google.maps.Point(28.034, 100),
-                fillColor: '#04a73d',
+                fillColor: '#2b62bf',
                 fillOpacity: 1,
-                strokeColor: '#058e35',
+                strokeColor: '#27549f',
                 strokeWeight: 2,
                 scale: 0.4,
             };
@@ -287,6 +287,9 @@
             // Add details pane
             var detailsPane = $('#compost-map .details');
 
+            detailsPane.find('.sta_certified_compost').click(function() {
+                $('#compost-map .details .sta-popup').fadeIn();
+            });
             detailsPane.find('span.close').click(function() {
                 $(this).parent('.popup').hide();
             });

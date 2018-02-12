@@ -121,8 +121,13 @@ html, body {
     font-size: 1.25em;
 }
 #compost-map .details .name {
-    background-color: #04a73d;
-    border-bottom: 3px solid #058e35;
+    background-color: #27549f;
+    border-bottom: 3px solid #204889;
+}
+
+#compost-map .details .sta_certified_compost  {
+    height: 30px;
+    cursor: pointer;
 }
 
 #compost-map .popup {
@@ -148,13 +153,16 @@ html, body {
     color: #708090;
 }
 @media screen and (min-height: 550px) {
+    #compost-map .details .sta_certified_compost {
+        height: 53px;
+    }
     #compost-map .popup {
         top: 30%;
     }
 }
 
 #compost-map .details .address, #compost-map .details .phone, #compost-map .details .website,
-#compost-map .details .products {
+#compost-map .details .products, #compost-map .details .compost_certifications {
     margin: 1em;
 }
 
@@ -168,9 +176,13 @@ html, body {
     text-decoration: none;
 }
 
-#compost-map .details .products > span {
+#compost-map .details .products > span, #compost-map .details .compost_certifications > span {
     display: block;
     color: #708090;
+}
+
+#compost-map .details .compost_certifications .sta_certified_compost {
+    margin-right: 30px;
 }
 
 #compost-map .details .btn-website, 
