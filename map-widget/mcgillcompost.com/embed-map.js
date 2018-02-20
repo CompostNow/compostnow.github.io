@@ -114,7 +114,7 @@
                 anchor: new google.maps.Point(28.034, 100),
                 fillColor: '#2b62bf',
                 fillOpacity: 1,
-                strokeColor: '#27549f',
+                strokeColor: '#0046ad',
                 strokeWeight: 2,
                 scale: 0.4,
             };
