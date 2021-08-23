@@ -2,9 +2,11 @@
     "use strict";
 
     var jqLoaded = false, gmLoaded = false;
+    var mapKey = "AIzaSyDwO35DrIZenuYV0NfJwLdbU4sKfv21raw";
+    var feedKey = "AIzaSyAFsTW88BHI2gA05XNMoSyd10X-IL1nj44";
     var feedId = '1NxzJPBuwvqHYxaxn8EYDCSb41KEWQUzqxvmXhAaeCXQ';
-    var feedUrl = 'https://spreadsheets.google.com/feeds/list/'+feedId+'/1/public/values?alt=json';
-    var map, locations;
+    var feedUrl = "https://sheets.googleapis.com/v4/spreadsheets/"+feedId+"/values/Feed%20Data?alt=json&key="+feedKey;
+    var map, locations, locationIndexNames;
     var lastZoom;
     var selectedLocation;
     var geocoder;
@@ -38,12 +40,12 @@
 
     // Get jQuery if not already loaded
     asyncLoadScript(window.jQuery, 
-        "//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js", 
+        "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js",
         handleFrameworkReady);
 
     // Get Google Maps if not already loaded
     asyncLoadScript(typeof google === 'object' && typeof google.maps === 'object', 
-        "//maps.googleapis.com/maps/api/js?key=AIzaSyDwO35DrIZenuYV0NfJwLdbU4sKfv21raw", 
+        "https://maps.googleapis.com/maps/api/js?key="+mapKey, 
         handleApiReady);
 
     function handleFrameworkReady() {
@@ -121,13 +123,15 @@
 
             // Load data feed
             $.get(feedUrl, function(data) {
-                locations = data.feed.entry;
+                locationIndexNames = data.values[0];
+                locations = data.values.slice(1);
                 var location;
                 var bounds = new google.maps.LatLngBounds();
                 for (var i = 0; i < locations.length; i++) {    //TODO: Consider replacing with $.each();
                     location = locations[i];
                     location.getVal = function(key) {
-                        return this['gsx$'+key] ? this['gsx$'+key]['$t'] : null;
+                        var index = locationIndexNames.indexOf(key);
+                        return index != -1 ? this[index] : null;
                     };
 
                     var point = new google.maps.LatLng(location.getVal('lat'), location.getVal('lng'));
@@ -323,7 +327,7 @@
                     position = positionMarker.getPosition().lat()+','+positionMarker.getPosition().lng();
                 }
 
-                var address = selectedLocation.getVal('fulladdress');
+                var address = selectedLocation.getVal('full_address');
                 window.open('https://www.google.com/maps/dir/'+position+'/'+address, '_blank');
             });
 
@@ -487,8 +491,8 @@
         $('#compost-map .details .name').text(location.getVal('name')).removeClass().addClass('name ');
 
         // address
-        var address = location.getVal('addressline1');
-        data = location.getVal('addressline2');
+        var address = location.getVal('address_line1');
+        data = location.getVal('address_line2');
         if (data && '' != data) {
             address += '<br>'+data;
         }
@@ -496,8 +500,8 @@
         $('#compost-map .details .address').html(address);
 
         // compost certifications
-        var staCertified = 'yes' == location.getVal('stacertifiedcompost');
-        var omriCertified = 'yes' == location.getVal('omricertifiedcompost');
+        var staCertified = 'yes' == location.getVal('sta_certified_compost');
+        var omriCertified = 'yes' == location.getVal('omri_certified_compost');
         if (staCertified || omriCertified) {
             $('#compost-map .details .compost_certifications').show();
 
@@ -574,7 +578,7 @@
         }
 
         // membership
-        if ('yes' == location.getVal('ncccmember')) {
+        if ('yes' == location.getVal('nccc_member')) {
             $('#compost-map .details .nccc_member').show();
         }
         else {
